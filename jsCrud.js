@@ -19,11 +19,6 @@ const about = (foods)=>{
  return blah
 }
 
-console.log(about(mexican))
-console.log(about(american))
-
-
-
 // [...]
 
 // foods:[{id:number,name:string, price:number},...]
@@ -33,9 +28,9 @@ console.log(about(american))
 /// returns new array with food add
 
 const addFood1=(foods, food)=>{
-
+  let addFood = [...foods, food]
+  return addFood
 }
-
 
 
 // [...]
@@ -51,10 +46,9 @@ const addFood1=(foods, food)=>{
 /// returns new array with food add
 
 const addFood2 = (foods, id,name,price)=>{
-
+  let addFood = [...foods, {id: id, name: name, price: price}]
+  return addFood
 }
-
-
 
 
 //MAP
@@ -68,12 +62,16 @@ const addFood2 = (foods, id,name,price)=>{
 /// returns new array with the price updated with the id given
 
 const updateFood1=(foods, id, price)=>{
+  let update = foods.map((x) => {
+    if (x.id === id) {
+      return {...x, price: price}
+    } 
+    return x
+  })
+  return update
 
  // Update - Map
-
 }
-
-
 
 //MAP
 
@@ -86,11 +84,15 @@ const updateFood1=(foods, id, price)=>{
 /// returns new array with the food item updated with the id given
 
 const updateFood2=(foods, id, food)=>{
-
-
+  let update = foods.map((x) => {
+    if (x.id === id) {
+      return {...x}, food
+    }
+    return x
+  })
+  return update
 
  }
-
 
 
 // FILTER
@@ -102,12 +104,11 @@ const updateFood2=(foods, id, food)=>{
 // removes the food with the given the id
 
 const deleteFood1 = (foods,id)=>{
-
-
-
-
+  let filteredFood = foods.filter((x) => {
+    return x.id != id
+  })
+  return filteredFood
 }
-
 
 
 // FILTER
@@ -119,7 +120,8 @@ const deleteFood1 = (foods,id)=>{
 // removes the food with price over price given
 
 const deleteFood2 = (foods,price)=>{
-
-
-
+  let filteredFood = foods.filter((x) => {
+    return x.price > price
+  })
+  return filteredFood
 }
